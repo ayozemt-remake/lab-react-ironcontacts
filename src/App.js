@@ -12,6 +12,8 @@ function App() {
           <th>Picture</th>
           <th>Name</th>
           <th>Popularity</th>
+          <th>Won Oscar</th>
+          <th>Won Emmy</th>
         </tr>
 
         {allContacts.map((contact) => {
@@ -30,6 +32,8 @@ function App() {
               <td>
                 <p>{contact.popularity.toFixed(2)}</p>
               </td>
+              <td>{contact.wonOscar ? <p>🏆</p> : <p></p>}</td>
+              <td>{contact.wonEmmy ? <p>🏆</p> : <p></p>}</td>
             </tr>
           );
         })}
