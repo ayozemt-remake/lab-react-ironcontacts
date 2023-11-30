@@ -13,11 +13,31 @@ function App() {
     }
   };
 
+  const sortContactByName = () => {
+    const sortedContacts = [...allContacts].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setAllContacts(sortedContacts);
+  };
+
+  const sortByPopularity = () => {
+    const sortedContacts = [...allContacts].sort(
+      (a, b) => b.popularity - a.popularity
+    );
+    setAllContacts(sortedContacts);
+  };
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
       <button onClick={addRandomContact} style={{ cursor: "pointer" }}>
         Add Random Contact
+      </button>
+      <button onClick={sortContactByName} style={{ cursor: "pointer" }}>
+        Sort by name
+      </button>
+      <button onClick={sortByPopularity} style={{ cursor: "pointer" }}>
+        Sort by popularity
       </button>
       <hr />
       <table>
