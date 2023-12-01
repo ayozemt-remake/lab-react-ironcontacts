@@ -10,7 +10,10 @@ function App() {
       contactsData[Math.floor(Math.random() * contactsData.length)];
     if (!allContacts.includes(randomContact)) {
       setAllContacts([randomContact, ...allContacts]);
+    } else {
+      addRandomContact();
     }
+    console.log(randomContact.name);
   };
 
   const sortContactByName = () => {
@@ -25,6 +28,13 @@ function App() {
       (a, b) => b.popularity - a.popularity
     );
     setAllContacts(sortedContacts);
+  };
+
+  const deleteContact = (contactId) => {
+    const filteredContacts = allContacts.filter((contact) => {
+      return contact.id !== contactId;
+    });
+    setAllContacts(filteredContacts);
   };
 
   return (
@@ -48,6 +58,7 @@ function App() {
             <th>Popularity</th>
             <th>Won Oscar</th>
             <th>Won Emmy</th>
+            <th>Actions</th>
           </tr>
         </thead>
         {allContacts.map((contact) => {
@@ -69,6 +80,14 @@ function App() {
                 </td>
                 <td>{contact.wonOscar ? <p>🏆</p> : <p></p>}</td>
                 <td>{contact.wonEmmy ? <p>🏆</p> : <p></p>}</td>
+                <td>
+                  <button
+                    onClick={() => deleteContact(contact.id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             </tbody>
           );
